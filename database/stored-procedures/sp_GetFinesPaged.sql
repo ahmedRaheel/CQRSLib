@@ -1,0 +1,1 @@
+CREATE PROCEDURE sp_GetFinesPaged AS BEGIN SELECT Id, LoanId, Amount FROM Fines; END

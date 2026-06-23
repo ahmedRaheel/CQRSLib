@@ -1,0 +1,1 @@
+CREATE PROCEDURE sp_GetBooksPaged AS BEGIN SELECT Id, Isbn, Title FROM Books; END

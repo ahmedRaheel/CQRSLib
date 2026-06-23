@@ -1,0 +1,1 @@
+CREATE PROCEDURE sp_GetAuthorsPaged AS BEGIN SELECT Id, Name FROM Authors; END

@@ -1,0 +1,9 @@
+{
+  "project": { "solutionName": "SalesService", "rootNamespace": "SalesService", "targetFramework": "net10.0", "databaseProvider": "SqlServer" },
+  "architecture": { "style": "OnionArchitecture", "apiStyle": "MinimalApi", "persistenceMode": "DapperReadEfWrite", "useMediatR": true, "useFluentValidation": true, "useResultPattern": true },
+  "entities": [
+    { "name": "Customer", "tableName": "Customers", "isAuditable": true, "fields": [ { "name": "Name", "cSharpType": "string", "required": true, "maxLength": 150 }, { "name": "Email", "cSharpType": "string", "required": true, "maxLength": 250, "unique": true } ], "relationships": [ { "type": "OneToMany", "targetEntity": "Order", "collectionName": "Orders", "deleteBehavior": "Restrict" } ] },
+    { "name": "Order", "tableName": "Orders", "isAuditable": true, "fields": [ { "name": "OrderNumber", "cSharpType": "string", "required": true, "maxLength": 50 }, { "name": "CustomerId", "cSharpType": "Guid", "required": true }, { "name": "TotalAmount", "cSharpType": "decimal", "required": true, "min": 0 } ], "relationships": [ { "type": "ManyToOne", "targetEntity": "Customer", "foreignKey": "CustomerId", "navigationName": "Customer", "required": true }, { "type": "ManyToMany", "targetEntity": "Product", "collectionName": "Products", "joinEntityName": "OrderProduct" } ] },
+    { "name": "Product", "tableName": "Products", "isLookup": true, "fields": [ { "name": "Code", "cSharpType": "string", "required": true, "maxLength": 50, "unique": true }, { "name": "Name", "cSharpType": "string", "required": true, "maxLength": 150 } ], "relationships": [ { "type": "ManyToMany", "targetEntity": "Order", "collectionName": "Orders", "joinEntityName": "OrderProduct" } ] }
+  ]
+}

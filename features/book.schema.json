@@ -1,0 +1,540 @@
+{
+  "workflow": {
+    "entryMode": "CreateNewSolution",
+    "markdownText": ""
+  },
+  "project": {
+    "solutionName": "LibraryService",
+    "rootNamespace": "LibraryService",
+    "targetFramework": "net10.0",
+    "databaseProvider": "SqlServer",
+    "outputDirectory": "",
+    "useCentralPackageManagement": true,
+    "useGlobalUsings": true,
+    "useDirectoryBuildProps": true
+  },
+  "architecture": {
+    "style": "VerticalSlice",
+    "apiStyle": "MinimalApi",
+    "persistenceMode": "DapperReadEfWrite",
+    "useMediatR": true,
+    "useMediatRPipelineBehaviors": true,
+    "useFluentValidation": true,
+    "useResultPattern": true,
+    "useEfCore": true,
+    "useDapper": true,
+    "useRepository": true,
+    "useUnitOfWork": true,
+    "repositoryMode": "SplitReadWrite",
+    "useBaseEntity": false,
+    "useAuditableEntity": false,
+    "useSoftDelete": false,
+    "useModuleDependencyInjection": false,
+    "dependencyInjectionMode": "Layer",
+    "useGlobalExceptionHandling": true,
+    "useSerilog": true,
+    "splitInfrastructureDataExternal": true,
+    "useOutbox": false,
+    "useTemporalTables": false,
+    "useHangfire": false,
+    "useBackgroundService": false,
+    "messageBroker": "None",
+    "useJwtAuthentication": false,
+    "authProvider": "None"
+  },
+  "entities": [
+    {
+      "name": "Book",
+      "module": "Library",
+      "tableName": "Books",
+      "primaryKeyName": "Id",
+      "primaryKeyType": "Guid",
+      "fields": [
+        {
+          "name": "Id",
+          "cSharpType": "Guid",
+          "dbType": "uniqueidentifier",
+          "required": true,
+          "primaryKey": true
+        },
+        {
+          "name": "Isbn",
+          "cSharpType": "string",
+          "dbType": "nvarchar(200)",
+          "required": true,
+          "primaryKey": false
+        },
+        {
+          "name": "Title",
+          "cSharpType": "string",
+          "dbType": "nvarchar(200)",
+          "required": true,
+          "primaryKey": false
+        }
+      ],
+      "commands": [
+        "Create",
+        "Update",
+        "Delete"
+      ],
+      "queries": [
+        "GetById",
+        "GetPaged"
+      ]
+    },
+    {
+      "name": "Author",
+      "module": "Library",
+      "tableName": "Authors",
+      "primaryKeyName": "Id",
+      "primaryKeyType": "Guid",
+      "fields": [
+        {
+          "name": "Id",
+          "cSharpType": "Guid",
+          "dbType": "uniqueidentifier",
+          "required": true,
+          "primaryKey": true
+        },
+        {
+          "name": "Name",
+          "cSharpType": "string",
+          "dbType": "nvarchar(200)",
+          "required": true,
+          "primaryKey": false
+        }
+      ],
+      "commands": [
+        "Create",
+        "Update",
+        "Delete"
+      ],
+      "queries": [
+        "GetById",
+        "GetPaged"
+      ]
+    },
+    {
+      "name": "Category",
+      "module": "Library",
+      "tableName": "Categories",
+      "primaryKeyName": "Id",
+      "primaryKeyType": "Guid",
+      "fields": [
+        {
+          "name": "Id",
+          "cSharpType": "Guid",
+          "dbType": "uniqueidentifier",
+          "required": true,
+          "primaryKey": true
+        },
+        {
+          "name": "Name",
+          "cSharpType": "string",
+          "dbType": "nvarchar(200)",
+          "required": true,
+          "primaryKey": false
+        }
+      ],
+      "commands": [
+        "Create",
+        "Update",
+        "Delete"
+      ],
+      "queries": [
+        "GetById",
+        "GetPaged"
+      ]
+    },
+    {
+      "name": "Publisher",
+      "module": "Library",
+      "tableName": "Publishers",
+      "primaryKeyName": "Id",
+      "primaryKeyType": "Guid",
+      "fields": [
+        {
+          "name": "Id",
+          "cSharpType": "Guid",
+          "dbType": "uniqueidentifier",
+          "required": true,
+          "primaryKey": true
+        },
+        {
+          "name": "Name",
+          "cSharpType": "string",
+          "dbType": "nvarchar(200)",
+          "required": true,
+          "primaryKey": false
+        }
+      ],
+      "commands": [
+        "Create",
+        "Update",
+        "Delete"
+      ],
+      "queries": [
+        "GetById",
+        "GetPaged"
+      ]
+    },
+    {
+      "name": "Member",
+      "module": "Library",
+      "tableName": "Members",
+      "primaryKeyName": "Id",
+      "primaryKeyType": "Guid",
+      "fields": [
+        {
+          "name": "Id",
+          "cSharpType": "Guid",
+          "dbType": "uniqueidentifier",
+          "required": true,
+          "primaryKey": true
+        },
+        {
+          "name": "Name",
+          "cSharpType": "string",
+          "dbType": "nvarchar(200)",
+          "required": true,
+          "primaryKey": false
+        },
+        {
+          "name": "Email",
+          "cSharpType": "string",
+          "dbType": "nvarchar(200)",
+          "required": true,
+          "primaryKey": false
+        }
+      ],
+      "commands": [
+        "Create",
+        "Update",
+        "Delete"
+      ],
+      "queries": [
+        "GetById",
+        "GetPaged"
+      ]
+    },
+    {
+      "name": "Loan",
+      "module": "Library",
+      "tableName": "Loans",
+      "primaryKeyName": "Id",
+      "primaryKeyType": "Guid",
+      "fields": [
+        {
+          "name": "Id",
+          "cSharpType": "Guid",
+          "dbType": "uniqueidentifier",
+          "required": true,
+          "primaryKey": true
+        },
+        {
+          "name": "BookId",
+          "cSharpType": "Guid",
+          "dbType": "uniqueidentifier",
+          "required": true,
+          "primaryKey": false
+        },
+        {
+          "name": "MemberId",
+          "cSharpType": "Guid",
+          "dbType": "uniqueidentifier",
+          "required": true,
+          "primaryKey": false
+        },
+        {
+          "name": "LoanDate",
+          "cSharpType": "DateTime",
+          "dbType": "datetime2",
+          "required": true,
+          "primaryKey": false
+        },
+        {
+          "name": "DueDate",
+          "cSharpType": "DateTime",
+          "dbType": "datetime2",
+          "required": true,
+          "primaryKey": false
+        }
+      ],
+      "commands": [
+        "Create",
+        "Update",
+        "Delete"
+      ],
+      "queries": [
+        "GetById",
+        "GetPaged"
+      ]
+    },
+    {
+      "name": "Reservation",
+      "module": "Library",
+      "tableName": "Reservations",
+      "primaryKeyName": "Id",
+      "primaryKeyType": "Guid",
+      "fields": [
+        {
+          "name": "Id",
+          "cSharpType": "Guid",
+          "dbType": "uniqueidentifier",
+          "required": true,
+          "primaryKey": true
+        },
+        {
+          "name": "BookId",
+          "cSharpType": "Guid",
+          "dbType": "uniqueidentifier",
+          "required": true,
+          "primaryKey": false
+        },
+        {
+          "name": "MemberId",
+          "cSharpType": "Guid",
+          "dbType": "uniqueidentifier",
+          "required": true,
+          "primaryKey": false
+        },
+        {
+          "name": "ReservedAt",
+          "cSharpType": "DateTime",
+          "dbType": "datetime2",
+          "required": true,
+          "primaryKey": false
+        }
+      ],
+      "commands": [
+        "Create",
+        "Update",
+        "Delete"
+      ],
+      "queries": [
+        "GetById",
+        "GetPaged"
+      ]
+    },
+    {
+      "name": "Fine",
+      "module": "Library",
+      "tableName": "Fines",
+      "primaryKeyName": "Id",
+      "primaryKeyType": "Guid",
+      "fields": [
+        {
+          "name": "Id",
+          "cSharpType": "Guid",
+          "dbType": "uniqueidentifier",
+          "required": true,
+          "primaryKey": true
+        },
+        {
+          "name": "LoanId",
+          "cSharpType": "Guid",
+          "dbType": "uniqueidentifier",
+          "required": true,
+          "primaryKey": false
+        },
+        {
+          "name": "Amount",
+          "cSharpType": "decimal",
+          "dbType": "decimal(18,2)",
+          "required": true,
+          "primaryKey": false
+        }
+      ],
+      "commands": [
+        "Create",
+        "Update",
+        "Delete"
+      ],
+      "queries": [
+        "GetById",
+        "GetPaged"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "from": "Book",
+      "to": "Publisher",
+      "type": "ManyToMany",
+      "joinEntity": "BookPublisher",
+      "deleteBehavior": "Restrict"
+    },
+    {
+      "from": "Book",
+      "to": "Author",
+      "type": "ManyToMany",
+      "joinEntity": "BookAuthor",
+      "deleteBehavior": "Restrict"
+    },
+    {
+      "from": "Book",
+      "to": "Category",
+      "type": "ManyToMany",
+      "joinEntity": "BookCategory",
+      "deleteBehavior": "Restrict"
+    },
+    {
+      "from": "Book",
+      "to": "Loan",
+      "type": "OneToMany",
+      "foreignKey": "BookId",
+      "deleteBehavior": "Restrict"
+    },
+    {
+      "from": "Member",
+      "to": "Loan",
+      "type": "OneToMany",
+      "foreignKey": "MemberId",
+      "deleteBehavior": "Restrict"
+    },
+    {
+      "from": "Book",
+      "to": "Reservation",
+      "type": "OneToMany",
+      "foreignKey": "BookId",
+      "deleteBehavior": "Restrict"
+    },
+    {
+      "from": "Member",
+      "to": "Reservation",
+      "type": "OneToMany",
+      "foreignKey": "MemberId",
+      "deleteBehavior": "Restrict"
+    },
+    {
+      "from": "Loan",
+      "to": "Fine",
+      "type": "OneToOne",
+      "foreignKey": "LoanId",
+      "deleteBehavior": "Cascade"
+    }
+  ],
+  "databaseDesigner": {
+    "enabled": true,
+    "entities": [
+      "Book",
+      "Author",
+      "Category",
+      "Publisher",
+      "Member",
+      "Loan",
+      "Reservation",
+      "Fine"
+    ],
+    "relationships": [
+      {
+        "from": "Book",
+        "to": "Publisher",
+        "type": "ManyToMany",
+        "joinEntity": "BookPublisher",
+        "deleteBehavior": "Restrict"
+      },
+      {
+        "from": "Book",
+        "to": "Author",
+        "type": "ManyToMany",
+        "joinEntity": "BookAuthor",
+        "deleteBehavior": "Restrict"
+      },
+      {
+        "from": "Book",
+        "to": "Category",
+        "type": "ManyToMany",
+        "joinEntity": "BookCategory",
+        "deleteBehavior": "Restrict"
+      },
+      {
+        "from": "Book",
+        "to": "Loan",
+        "type": "OneToMany",
+        "foreignKey": "BookId",
+        "deleteBehavior": "Restrict"
+      },
+      {
+        "from": "Member",
+        "to": "Loan",
+        "type": "OneToMany",
+        "foreignKey": "MemberId",
+        "deleteBehavior": "Restrict"
+      },
+      {
+        "from": "Book",
+        "to": "Reservation",
+        "type": "OneToMany",
+        "foreignKey": "BookId",
+        "deleteBehavior": "Restrict"
+      },
+      {
+        "from": "Member",
+        "to": "Reservation",
+        "type": "OneToMany",
+        "foreignKey": "MemberId",
+        "deleteBehavior": "Restrict"
+      },
+      {
+        "from": "Loan",
+        "to": "Fine",
+        "type": "OneToOne",
+        "foreignKey": "LoanId",
+        "deleteBehavior": "Cascade"
+      }
+    ]
+  },
+  "reverseEngineering": {
+    "enabled": true,
+    "provider": "SqlServer",
+    "connectionString": "",
+    "schema": "dbo"
+  },
+  "databaseObjects": {
+    "createTable": true,
+    "alterTable": false,
+    "dropTable": false,
+    "createViews": true,
+    "createStoredProcedures": true,
+    "createFunctions": false,
+    "createTriggers": false,
+    "createIndexes": true,
+    "createMigration": true,
+    "createRollback": true
+  },
+  "generate": {
+    "entity": true,
+    "dtos": true,
+    "commands": true,
+    "queries": true,
+    "handlers": true,
+    "services": false,
+    "validators": true,
+    "controller": false,
+    "minimalApi": true,
+    "efConfiguration": true,
+    "sql": true,
+    "tests": true,
+    "repository": true,
+    "unitOfWork": true,
+    "dapperRead": true,
+    "dapperWrite": false,
+    "efDbContext": true,
+    "pipelineBehaviors": true,
+    "businessRules": false,
+    "exceptionHandler": true,
+    "serilog": true,
+    "outbox": false,
+    "temporalTables": false,
+    "rabbitMq": false,
+    "kafka": false,
+    "security": false,
+    "keycloak": false,
+    "hangfireJob": false,
+    "backgroundService": false,
+    "dtoStyle": "record",
+    "validatorStyle": "FluentValidation",
+    "apiDocumentationTool": "Scalar"
+  }
+}

@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <TargetFramework>net10.0</TargetFramework>
+    <PackageId>FastCqrs</PackageId>
+    <Version>1.0.0</Version>
+    <Description>A small, fast CQRS/mediator library. Decorator-pattern pipeline instead of chained pipeline behaviors, ValueTask handlers, cached zero-reflection dispatch, optional source-generated handler registration for trimming/Native AOT.</Description>
+    <PackageTags>cqrs;mediator;decorator;ddd</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.2" />
+  </ItemGroup>
+
+  <!-- Local solution-only reference to the generator so the sample/tests get source-generated registration
+       without needing a NuGet package. When publishing FastCqrs as a NuGet package, replace this with a
+       PackageReference to FastCqrs.Generators and pack it under analyzers/dotnet/cs (see that project's csproj). -->
+
+</Project>
