@@ -2,10 +2,15 @@
 
   <PropertyGroup>
 	  <TargetFramework>net10.0</TargetFramework>
+ 
+    <ImplicitUsings>enable</ImplicitUsings>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PackageId>FastCqrs</PackageId>
     <Version>1.0.0</Version>
     <Description>A small, fast CQRS/mediator library. Decorator-pattern pipeline instead of chained pipeline behaviors, ValueTask handlers, cached zero-reflection dispatch, optional source-generated handler registration for trimming/Native AOT.</Description>
-    <PackageTags>cqrs;mediator;decorator;ddd</PackageTags>
+    <PackageTags>cqrs;mediator;decorator;ddd;vertical-slice;value-task</PackageTags>
+    <RepositoryUrl>https://github.com/ahmedRaheel/FastCqrs</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>

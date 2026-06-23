@@ -32,7 +32,7 @@ public sealed class SequentialPublishStrategy : INotificationPublishStrategy
 
 /// <summary>
 /// Runs all handlers concurrently and waits for every one to finish. If multiple handlers throw,
-/// an <see cref="AggregateException"/> containing every failure is thrown.
+/// exceptions are preserved on the returned task; awaiting rethrows according to normal Task.WhenAll semantics.
 /// </summary>
 public sealed class ParallelPublishStrategy : INotificationPublishStrategy
 {

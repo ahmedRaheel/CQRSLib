@@ -11,6 +11,15 @@ namespace FastCqrs.DependencyInjection;
 /// </summary>
 public static class ServiceCollectionDecorationExtensions
 {
+
+    /// <summary>Wraps all registered request handlers with the given open-generic decorator.</summary>
+    public static IServiceCollection AddRequestDecorator(this IServiceCollection services, Type decoratorType)
+        => services.Decorate(typeof(IRequestHandler<,>), decoratorType);
+
+    /// <summary>Wraps all registered notification handlers with the given open-generic decorator.</summary>
+    public static IServiceCollection AddNotificationDecorator(this IServiceCollection services, Type decoratorType)
+        => services.Decorate(typeof(INotificationHandler<>), decoratorType);
+
     /// <summary>Wraps every registration of the closed generic service <typeparamref name="TService"/>.</summary>
     public static IServiceCollection Decorate<TService, TDecorator>(this IServiceCollection services)
         where TDecorator : class, TService
