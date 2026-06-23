@@ -37,7 +37,6 @@
 		<PackageReference Include="Asp.Versioning.Http" />
 	</ItemGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\..\..\FastCqrs\src\FastCqrs\FastCqrs.csproj" />
 	  <ProjectReference Include="..\FastCqrs\FastCqrs.csproj" />
 	</ItemGroup>
 </Project>

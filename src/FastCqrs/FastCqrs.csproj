@@ -9,11 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.2" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions"  />
   </ItemGroup>
 
-  <!-- Local solution-only reference to the generator so the sample/tests get source-generated registration
-       without needing a NuGet package. When publishing FastCqrs as a NuGet package, replace this with a
-       PackageReference to FastCqrs.Generators and pack it under analyzers/dotnet/cs (see that project's csproj). -->
 
 </Project>
